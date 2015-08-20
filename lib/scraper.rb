@@ -1,8 +1,15 @@
+require 'anemone'
+
 class Scraper
-  include Wombat::Crawler
 
-  base_url = "http://weworkremotely.com" # only site we want to scrape, to start
-  path = "/categories/2/jobs" # path to programming jobs
+  def perform
+    Anemone.crawl("http://www.sarahschultz.info") do |anemone|
+      anemone.on_every_page do |page|
+        #this is where we'll parse the page for yucky keywords
+        # if perform returns a match
+        # scraper will move on to next link
+      end
+    end
+  end
 
-  job_post css: "#category-2 > article > ul" # job rows
 end
